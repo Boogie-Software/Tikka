@@ -1,0 +1,31 @@
+name: tikka
+description: "A Clean Architecture implementation for Flutter apps."
+version: 0.8.0
+homepage: https://github.com/Boogie-Software/Tikka
+
+environment:
+  sdk: ^3.6.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_bloc: ^9.0.0
+  injector: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+  test: ^1.24.3
+  mockito: ^5.4.5
+  bloc_test: ^10.0.0
+
+flutter:
+
+  assets:
+    - assets/images/tikka_logo_256x256.png
+    - assets/images/tikka_logo_512x512.png
+
