@@ -6,9 +6,17 @@
 
 This Flutter library offers a clean and practical implementation of Clean Architecture for Flutter applications. It's designed to help you build maintainable and testable apps by following the core principles described in Robert C. Martin's "Clean Architecture."  A helpful introduction to Clean Architecture can be found on [The Clean Code Blog](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
+![Image description](./assets/images/clean_architecture.png)
+
 ### Origins of Library Name
 
 The Tikka library takes its name and logo from the Finnish word for "dart" which is "tikka". "Tikka" also means "woodpecker" in Finnish.
+
+## Architectual Overview of Tikka Clean Architecture Implementation
+
+The following diagram provides a highlevel architectual overview of Tikka's implementation of Clean Architecture. Note the coloring that matches the colous used in the first image. The components depicted in the diagram are described in greated detail in next section.
+
+![Image description](./assets/images/tikka_architecture.png)
 
 ## Implementation of Clean Architecture Layers
 
@@ -67,15 +75,13 @@ This layer consists two sublayers: Adapters Components (e.f. Repository and Serv
 
 ### Frameworks and Drivers Layer
 
-This layer contains UI components, database components, REST API components, and other platform components. For implementing Framework components, the Tikka library provides the following components:
+This layer contains UI components, database components, REST API components, and other platform components. For implementing Framework components, the Tikka library provides the following classes:
 
 | Class | Description |
 | :--- | :--- |
 | `TikkaView`  | defines an interface for Flutter Widgets that can utilize the Presentation layer components provided in the Tikka library. The interface exposes and attaches a `Controller` to a View implementation. The attached `Controller` is used then to emit View events from UI to Presentation Layer. |
 | `TikkaPage`  | defines interface for implemenations of Flutter's [StatefullWidget] that can utilize the Presentation layer components provided in Tikka library. The interface exposes and attaches a `Controller` to a View implementation. A `Controller` is used them to emit View events from UI to Presentation Layer. |
 | `TikkaPageState` | provides a base class for concrete implementations of Flutter´s `State` widget that can make use of the Presentation Layer design pattern and components provided in Tikka. A `State` widget implementation derived from `TikkaPageState` have access to the injected `Controller` and can use it to emit `ViewStateEvent` based events to the `Controller`. In addition, the [State] widget can provide lifecycle events to the attached `Controller`. |
-
-## Architectual Overview of Tikka Clean Architecture Implementation
 
 ## An Example of Using Tikka Library
 
