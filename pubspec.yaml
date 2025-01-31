@@ -2,6 +2,9 @@ name: tikka
 description: "A Clean Architecture implementation for Flutter apps."
 version: 0.8.0
 homepage: https://github.com/Boogie-Software/Tikka
+repository: https://github.com/Boogie-Software/Tikka
+issue_tracker: https://github.com/Boogie-Software/Tikka/issues
+license: Apache-2.0
 
 environment:
   sdk: ^3.6.1
