@@ -10,7 +10,7 @@
 // governing permissions and limitations under the License.
 
 import 'package:injector/injector.dart';
-import 'package:tikka/adapter/api.dart';
+import 'package:tikka/adapters/api.dart';
 
 /// Abstract class [AbstractApi] defines a base class for all concrete Manager
 /// concrete implementations. Concrete implementations are placed to Framework layer. 

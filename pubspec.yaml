@@ -25,7 +25,6 @@ dev_dependencies:
 
 flutter:
 
-  assets:
-    - assets/images/tikka_logo_256x256.png
-    - assets/images/tikka_logo_512x512.png
+  # assets:
+
 

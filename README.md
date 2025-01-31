@@ -14,13 +14,13 @@ The Tikka library takes its name and logo from the Finnish word for "dart" which
 
 ## Architectual Overview of Tikka Clean Architecture Implementation
 
-The following diagram provides a highlevel architectual overview of Tikka's implementation of Clean Architecture. Note the coloring that matches the colous used in the first image. The components depicted in the diagram are described in greated detail in next section.
+The diagram below presents a high-level architectural overview of Tikka's implementation of Clean Architecture. Note the color-coding, which corresponds to the colors used in the first image.  The components illustrated in the diagram are described in greater detail in the following section.
 
-![Image description](./assets/images/tikka_architecture.png)
+![Image description](./assets/images/tikka_architectural_overview.png)
 
 ## Implementation of Clean Architecture Layers
 
-A core principle of Clean Architecture is the separation of concerns. This involves structuring code into layers, each with specific responsibilities, that interact through clear interfaces. This approach enhances code readability, maintainability, and testability.  The library offers the following Dart classes to help you implement the various components of these layers.
+A core principle of Clean Architecture is the separation of concerns, which is achieved by structuring code into distinct layers. Each layer has specific responsibilities and interacts with others through well-defined interfaces. This approach enhances code readability, maintainability, and testability. To facilitate the implementation of these layers and their components, the TIkka library provides the following Dart classes. The classes described below are categorized by Clean Architecture layers.
 
 ### Enterprise and Application Business Locic Layer a.k.a Domain Layer
 
@@ -45,32 +45,32 @@ The provided implementation classes for Domain Layer are organized in Tikka libr
 
 | Class | Description |
 | :--- | :--- |
-| `Repository`  | Abstract class [Repository] defines a base interface for all Repository interfaces. A Repository component use used to create, fetch, update, or delete data. And typically by using some Data Source component from the Framework Layer. Extended interfaces are placed to Domain layer. Concrete implementations  of the interface are placed to Adapter layer.  |
-| `Service` | Abstract class [Service] defines a base interface for all Service interfaces. A Service component is typically a component that provides an API to use some service of the underlaying platform (e.g. Android, iOS). Extended interfaces are placed to Domain layer. Concrete implementations of the interface are placed to Adapter layer. |
+| `Repository`  |  Defines a base interface for all Repository interfaces. Repository components use used to create, fetch, update, or delete data from which the Entities are derived. Typically a Repository uses one ore Data Source components from the Framework Layer. The interfaces extended from `Repository` belong to Domain layer. Concrete class implementations of the derived interfaces belong to Adapter layer.  |
+| `Service` | Defines a base interface for all Service interfaces. Service component are typically components that provides an API to use some service of the underlaying platform (e.g. Android, iOS).  The interfaces extended from `Service` belong  to Domain layer. Concrete class implementations of the derived interfaces are placed to Adapter layer. |
 
 ### Interface Adapters Layer
 
-This layer consists two sublayers: Adapters Components (e.f. Repository and Service components) and Presentation Layer (e.g. Controller, Presenter, ViewState).
+This layer consists two sublayers: Adapters Components (e.g. Repository and Service components) and Presentation Layer (e.g. Controller, Presenter, ViewState).
 
 #### Adapter Components
 
 | Class | Description |
 | :--- | :--- |
-| `AbstractRepository`  | A base class for all concrete `Repository` component implementations. Concrete implementations are placed to Adapter layer. |
-| `AbstractService` | A base class for all concrete `Service` component implementations. Concrete implementations are placed to Adapter layer.|
-| `Api`| Defines a base interface for all Api component interfaces. Api components are not typically used for data fetching, but for triggering some functionality provided by some Framework component, e.g. a REST API. Extended interfaces are placed to Adapter layer. Concrete implementations of the interface are placed to Framework layer. |
-| `DataSource` | Defines a base interface for all Data Source component interfaces. Extended interfaces are placed to Adapter layer. Concrete implementations of the interface are placed to Data layer. |
-| `Manager`| Defines a base interface for all Manager components interfaces. A Manager component can be example some manager component, or device driver type component from the underlying platform. Extended interfaces are placed to Adapter layer. Concrete implementations of the interface are placed to Framework layer. | 
+| `AbstractRepository`  | A base class for all concrete `Repository` component implementations. Concrete implementations belong to Adapter layer. |
+| `AbstractService` | A base class for all concrete `Service` component implementations. Concrete implementations belong to Adapter layer.|
+| `Api`| Defines a base interface for all Api component interfaces. Api components are not typically used for data fetching, but for triggering some functionality provided by some Framework component, e.g. a REST API. Interfaces extended from `Api` belong to Adapter layer. Concrete implementations of the interfaces belong to Framework layer. |
+| `DataSource` | Defines a base interface for all Data Source component interfaces. Interfaces extended from `DataSource` are placed to Adapter layer. Concrete implementations of the interfaces are placed to Data layer. |
+| `Manager`| Defines a base interface for all Manager components interfaces. A Manager component can be, for example, some resource managing component, or device driver type component from the underlying platform. Interfaces extended from `Manager` belong to Adapter layer. Concrete implementations of the interfaces belong to Framework layer. | 
 
 #### Presentation Layer
 
 | Class | Description |
 | :--- | :--- |
-| `Controller` | Defines an interfance for Controller components in Presentation layer. Controllers are used to handle user interactions and map them to use cases.  A Controller component is typically used together with a Presenter component to separate the concerns of handling user interactions and presenting data to the user. |
-| `Presenter`| Abstract class for Presenter components in Presentation layer. Presenters are used to present data to the user. They typically receive Domain data, and then filter, modify, and complete it to a representation data that is suitable to be rendered by Flutter based UI. Presenters are used together with Controllers to separate the concerns of handling user interactions and presenting data to the user. |
-| `ViewEvent` | Provides an interface for concrete View Event components. UI in Framework layer uses View Events to notify a Controller about UI events such as user interactions or UI framework events (e.g. a View in UI becomes visible). Concrete implementations of `ViewEvent` are placed to Presentation layer.| 
-| `ViewState` | Provides an abstract class for implementing View State components. A View State encapsulated all the data needed to render Widgets in a page or screen. Instances of [ViewState] are modified and emitted to UI by a Presenter.  An implementation of `ViewState` should be an immutable class for easier testability and trackability of changes. |
-| `ViewStateObserver` | Defines an observer interface for receiving updated `ViewState` objects. Instances of  `ViewState` are emitted by a `Presenter` and received by a View component (in Framework layer) implementing the `ViewStateObserver` interface. Concrete implemenations of this interface are placed to Presentation layer. |
+| `Controller` | Defines an interfance for Controller components in Presentation layer. Controllers are used to handle user interactions and map them to use case invocations. In case a Controller uses a `UseCaseBloc`, it emits a `UseCaseIntent` to the `UseCaseBloc`. In case of simpler `UseCase` components, a Controller invokes the use case function directly. A Controller component is typically used together with a Presenter component to separate the concerns of handling user interactions and presenting data to the user. |
+| `Presenter`| Abstract class for Presenter components in Presentation layer. Presenters are used to present data to the user. They typically receive Domain objects (especially `State` objects), and then filter, modify, and complete it to a representation data that is suitable to be rendered by Flutter based UI. Presenters are used together with Controllers to separate the concerns of handling user interactions and presenting data to the user. |
+| `ViewEvent` | Provides an interface for concrete View Event components. UI in Framework layer uses View Events to notify a Controller about UI events such as user interactions or UI framework events (e.g. a View in UI becomes visible). Concrete implementations of `ViewEvent` interfaces belong to Presentation layer.| 
+| `ViewState` | Provides an abstract class for implementing View State components. A View State encapsulates all the data needed to render Widgets in UI. Instances of `ViewState` are modified and emitted to UI by a Presenter. An implementation of `ViewState` should be an immutable class for easier testability and trackability of changes. |
+| `ViewStateObserver` | Defines an observer interface for receiving updated `ViewState` objects. Instances of `ViewState` are created and emitted by a `Presenter` and received by a Flutter widget implementing the `ViewStateObserver` interface. |
  
 
 ### Frameworks and Drivers Layer
@@ -79,9 +79,9 @@ This layer contains UI components, database components, REST API components, and
 
 | Class | Description |
 | :--- | :--- |
-| `TikkaView`  | defines an interface for Flutter Widgets that can utilize the Presentation layer components provided in the Tikka library. The interface exposes and attaches a `Controller` to a View implementation. The attached `Controller` is used then to emit View events from UI to Presentation Layer. |
-| `TikkaPage`  | defines interface for implemenations of Flutter's [StatefullWidget] that can utilize the Presentation layer components provided in Tikka library. The interface exposes and attaches a `Controller` to a View implementation. A `Controller` is used them to emit View events from UI to Presentation Layer. |
-| `TikkaPageState` | provides a base class for concrete implementations of Flutter´s `State` widget that can make use of the Presentation Layer design pattern and components provided in Tikka. A `State` widget implementation derived from `TikkaPageState` have access to the injected `Controller` and can use it to emit `ViewStateEvent` based events to the `Controller`. In addition, the [State] widget can provide lifecycle events to the attached `Controller`. |
+| `TikkaView`  | defines an interface for Flutter Widgets that can utilize the Presentation layer components provided in the Tikka library. The interface exposes and attaches a `Controller` to a Flutter widget implementation. The attached `Controller` is used then to emit instances of `ViewEvent` from UI to Presentation Layer. |
+| `TikkaPage`  | defines interface for implemenations of Flutter's [StatefullWidget] that can utilize the Presentation layer components provided in Tikka library. The interface exposes and attaches a `Controller` to a View implementation. A `Controller` is used them to emit instances of `ViewEvent` from UI to Presentation Layer. |
+| `TikkaPageState` | provides a base class for concrete implementations of Flutter´s `State` widget that can make use of the Presentation Layer design pattern and components provided in Tikka. A `State` widget implementation derived from `TikkaPageState` have access to the injected `Controller` and can use it to emit `ViewStateEvent` based events to the `Controller`. In addition, the [State] widget can provide useful lifecycle events to the attached `Controller`. |
 
 ## An Example of Using Tikka Library
 

@@ -10,7 +10,7 @@
 // governing permissions and limitations under the License.
 
 import 'package:injector/injector.dart';
-import 'package:tikka/adapter/data_source.dart';
+import 'package:tikka/adapters/data_source.dart';
 
 /// Abstract class [AbstractDataSource] defines a base class for all concrete Data Source
 /// component implementations. Concrete implementations are placed to Framework layer. 
