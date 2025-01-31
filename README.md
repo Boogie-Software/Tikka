@@ -88,7 +88,7 @@ This layer contains UI components, database components, REST API components, and
 Let's implement a page that displays a list of products which are fetched as JSON data from a backend. 
 The example uses [DummyJSON API - Products](https://dummyjson.com/products) to fetch the products data.
 The sources are not fully included here for simplicity and better readability. The complete source codes
-are available in github repository [Tikka Demo App](https://github.com/Boogie-Software/Tikka-App).
+are available in github repository [Tikka Demo App](https://github.com/Boogie-Software/Tikka-Demo-App).
 
 ### Domain Layer / Entities
 
