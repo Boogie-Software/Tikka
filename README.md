@@ -158,12 +158,10 @@ For obtaining the products data, there is only one use case component which is a
 
 ```dart
 class ProductsBloc extends UseCaseBloc<ProductsState, ProductsIntent>  {
-  
-  late final ProductsRepository repository;
 
   ProductsBloc() : super(ProductsState()) {
     on<GetProducts>((event, emit) async {
-      repository = get<ProductsRepository>();
+      final repository = get<ProductsRepository>();
 
       emit(state.copy(status: DataLoadingStatus.loading));
       

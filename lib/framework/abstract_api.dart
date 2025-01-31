@@ -12,7 +12,7 @@
 import 'package:injector/injector.dart';
 import 'package:tikka/adapters/api.dart';
 
-/// Abstract class [AbstractApi] defines a base class for all concrete Manager
+/// [AbstractApi] defines a base class for all concrete Manager
 /// concrete implementations. Concrete implementations are placed to Framework layer. 
 abstract class AbstractApi implements Api {
 

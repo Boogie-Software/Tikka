@@ -1,6 +1,9 @@
 name: tikka
-description: "A Clean Architecture implementation for Flutter apps."
-version: 0.8.0
+description: "A Clean Architecture implementation for Flutter apps that supports Bloc-based use cases, 
+unidirectional data flow across all layers, and a specific design pattern for the Presentation layer. 
+Implementation provides comprehensive support for every layer of the Clean Architecture paradigm."
+version: 0.8.1
+documentation: https://pub.dev/documentation/tikka/latest/
 homepage: https://github.com/Boogie-Software/Tikka
 repository: https://github.com/Boogie-Software/Tikka
 issue_tracker: https://github.com/Boogie-Software/Tikka/issues

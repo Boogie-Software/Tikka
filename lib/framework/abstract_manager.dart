@@ -12,7 +12,7 @@
 import 'package:injector/injector.dart';
 import 'package:tikka/adapters/manager.dart';
 
-/// Abstract class [AbstractManager] defines a base class for all concrete Manager
+/// [AbstractManager] defines a base class for all concrete Manager
 /// concrete implementations. Concrete implementations are placed to Framework layer. 
 abstract class AbstractManager implements Manager {
 
